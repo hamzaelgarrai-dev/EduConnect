@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
-class Cour extends Model
+class Cour extends Authenticatable implements AuthorizableContract
 {
-    use HasFactory;
+    use HasFactory , HasRoles, Authorizable , HasApiTokens;
+
 
     protected $fillable = ["title", "description" ];
 

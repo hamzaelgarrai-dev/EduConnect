@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Model
+class User extends Authenticatable implements AuthorizableContract
 {
-    use HasFactory;
-    use HasApiTokens, HasFactory, Notifiable;
-    use HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, Authorizable;
 
     /**
      * The attributes that are mass assignable.
@@ -23,11 +23,10 @@ class User extends Model
         'name',
         'email',
         'password',
-        'role'
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for arrays or JSON responses.
      *
      * @var array<int, string>
      */
@@ -46,9 +45,7 @@ class User extends Model
         'password' => 'hashed',
     ];
 
-    public function cours(){
-        return $this->hasMany(Cour::class);
+     public function cour(){
+       return $this->hasMany(User::class);
     }
-
-  
 }
