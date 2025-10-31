@@ -2,30 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cour;
+use App\Http\Requests\StoreCourRequest;
+use App\Http\Requests\UpdateCourRequest;
 
-use App\Models\User;
-
-use Illuminate\Http\Request;
-
-class UserController extends Controller
+class CourController extends Controller
 {
-
-
-   
-
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return User::all();
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCourRequest $request)
     {
         //
     }
@@ -33,7 +27,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(Cour $cour)
     {
         //
     }
@@ -41,7 +35,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateCourRequest $request, Cour $cour)
     {
         //
     }
@@ -49,7 +43,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(Cour $cour)
     {
         //
     }
